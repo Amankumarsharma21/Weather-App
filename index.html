@@ -58,41 +58,4 @@
     <h2>Weather App</h2>
     <input type="text" id="locationInput" placeholder="Enter city...">
     <button onclick="getWeather()">Get Weather</button>
-    <div class="result" id="result"></div>
-  </div>
-
-  <script>
-    async function getWeather() {
-      const location = document.getElementById("locationInput").value.trim();
-      const apiKey = "eeab73b724074ccaad9142126252809"; 
-
-      if (!location) {
-        document.getElementById("result").innerHTML = "<p style='color:red;'>Please enter a city name.</p>";
-        return;
-      }
-
-      // Proxy URL to bypass CORS on GitHub Pages
-      const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes`;
-      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`;
-
-      try {
-        const response = await fetch(proxyUrl);
-        if (!response.ok) {
-          throw new Error("Failed to fetch weather data");
-        }
-
-        const data = await response.json();
-
-        document.getElementById("result").innerHTML = `
-          <p><strong>Location:</strong> ${data.location.name}, ${data.location.country}</p>
-          <p class="temp">${data.current.temp_c}°C</p>
-          <p><strong>Condition:</strong> ${data.current.condition.text}</p>
-          <img src="https:${data.current.condition.icon}" alt="Weather icon">
-        `;
-      } catch (error) {
-        document.getElementById("result").innerHTML = `<p style="color:red;">${error.message}</p>`;
-      }
-    }
-  </script>
-</body>
-</html>
+    <div class="result" id="result
